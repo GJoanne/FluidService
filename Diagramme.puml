@@ -1,0 +1,42 @@
+@startuml Mediatheque
+class  Restaurant {
+    int Id
+    string Nom
+    int Siret
+    string Adresse
+    string Mail 
+    int NbEmployes
+    string Site_web 
+}
+class Employe{
+    int Id
+    int Rôle 
+    string Nom
+    string Prenom 
+    string Email 
+    string Adresse 
+    int Telephone
+}
+class Reservation{
+    Date date_resa
+    int Heure 
+    string Nom 
+    int Nb_couverts
+}
+class Table {
+    int Id 
+    Etat Etat 
+    int Nb_couverts
+}
+class Service{
+    List Table
+    id Employe
+}
+
+Restaurant "1" <|----|> "*" Employe
+Table "*" <|----|> "1" Restaurant
+Employe "*" <|----|> "*" Table
+Reservation "1" <|----|> "1" Table
+Service "1" <|----|> "*" Table
+Service "1" <|----|> "1" Employe
+@enduml
