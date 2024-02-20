@@ -4,15 +4,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
+import logo from './FluidService.png';
 
 function Reservation() {
   return (
-    <div className="Reservations">
+    <div className="Reservation">
         <header>
       <Navbarfonc/>
       </header>
-      <body className='Reservation-body'>
-        <Title text="Réservation" />
+      <body className="Reservation-body">
+        <Title text="Réservations" />
         <Calendrier/>
       </body>
     </div>
@@ -22,13 +24,14 @@ function Reservation() {
 
 function Navbarfonc(){
     return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className='navbar'>
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand ><Link to="/"><img src={logo}
+                    alt="Logo" width="75" height="75" /></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+           <Nav.Link><Link to="/"> Accueil </Link> </Nav.Link>   
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -55,10 +58,26 @@ const Title = ({ text }) => (
 );
 
 function Calendrier (){
+     const currentDate = new Date();
+     const mois = [
+    "Janvier",
+    "Février",
+    "Mars",
+    "Avril",
+    "Mai",
+    "Juin",
+    "Juillet",
+    "Août",
+    "Septembre",
+    "Octobre",
+    "Novembre",
+    "Décembre"
+  ];
+  const moisActuel = mois[currentDate.getMonth()];
 return (<div>
     <div className='Table-Header'>
-            <h2>Février </h2>
-            <div>Arrivé Annulé Prévue</div>
+            <h2>{moisActuel}</h2>
+            <div><input type='checkbox' id='Arrive'/>Arrivé <input type='checkbox' id='Annule'/>Annulé <input type='checkbox' id='Prevu'/>Prévue</div>
 <div>Aujourd'hui precedent suivant</div>
         </div>
         <div>
@@ -68,13 +87,56 @@ return (<div>
         <th>Lundi</th>
         <th>Mardi</th>
         <th>Mercredi</th>
-        <th>Jeudi</th>
+            <th>Jeudi</th>
         <th>Vendredi</th>
         <th>Samedi</th>
         <th>Dimanche</th>
-    </tr>
+    </tr>   
 </thead>
+<tbody>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+    </tr>
+</tbody>
+
         </table></div></div>);
+}
+
+function Mois(){
+
 }
 
 export default Reservation;

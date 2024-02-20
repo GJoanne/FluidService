@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div><ContactLink/></div>
+        <div><ReservationLink/></div>
       </header>
     </div>
   );
@@ -16,7 +16,7 @@ function App() {
 
 export default App;
 
-export function ContactLink() {
+export function ReservationLink() {
   const link = "/Reservation/" ;
   return <Link to={link}>Start your experience</Link>;
 }

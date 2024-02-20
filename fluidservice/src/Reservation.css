@@ -1,23 +1,60 @@
 
+.Reservation{
+    background-color: #303742;
+    height: 98%;
+    width: 100%;
+}
+
 .Reservation-body{
     background-color: #303742;
     color : #EDE3DA;
-    height: 100%;
 }
 
 .Table-Header{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin: 2%;
 }
+
 
 h1{
     display: flex;
-    padding: 2%;
+    padding: 1%;
     justify-content: center;
 }
 
 table{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    
+    width: 94%;
+    height: 100%;
+    margin : 3%;
+    background-color: #EDE3DA;
+    color: #303742;
+    border-radius: 10px;
+    box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
 }
+
+th{
+    width: 14%;
+    padding: 2%;
+    text-align-last: center;
+}
+
+td{
+    width: 7%;
+    padding: 3%;
+    text-align: center;
+    height: 25%;
+   
+}
+
+
+.navbar{
+    background-color:#303742 ;
+    color:  #EDE3DA;
+    border-radius: 10px;
+    box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+}
+
