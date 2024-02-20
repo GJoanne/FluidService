@@ -18,6 +18,31 @@
     margin: 2%;
 }
 
+.Arrive{
+    background-color: green;
+}
+
+.Annule{
+    background-color: gray;
+}
+
+hr.Arrive{
+    height: 5px;
+    color: green;
+}
+
+hr.Annule{
+    height: 5px;
+    color: grey;
+}
+
+.Date-jour{
+    background-color:#84714F;
+}
+
+h6{
+    display: inline;
+}
 
 h1{
     display: flex;
