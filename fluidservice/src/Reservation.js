@@ -123,11 +123,11 @@ function Calendrier (){
     j++;
   }
   for(let i=1; i<=nbJoursMoisActuel;i++){
-    if(j%7==0){
+    if(j%7===0){
       tableauMois.push(<tr>{ligne}</tr>)
       ligne=[];
     }
-    if(currentDate.getFullYear()==AnneeCourant && currentDate.getMonth()==moisCourant &&  jourActuel==i){
+    if(currentDate.getFullYear()===AnneeCourant && currentDate.getMonth()===moisCourant &&  jourActuel===i){
        ligne.push(<td className='Date-jour'>{i}</td>);
     }
     else {
@@ -138,7 +138,7 @@ function Calendrier (){
   }
   let i=1;
   while(j<=35){
-    if(j%7==0){
+    if(j%7===0){
       tableauMois.push(<tr>{ligne}</tr>)
       ligne=[];
     }

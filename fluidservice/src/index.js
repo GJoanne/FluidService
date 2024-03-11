@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Reservation from "./Reservation";
+import Salle from "./Plan_de_salle";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/Reservation/" element={<Reservation />} />
+        <Route path="/Salle/" element={<Salle />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

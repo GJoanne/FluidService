@@ -15,9 +15,11 @@ function App() {
 }
 
 function ReservationLink() {
-  const link = "/Reservation/" ;
+  const link = "/Salle/" ;
   return <Link to={link} className="link">Appuyer ici pour commencer votre expérience</Link>;
 }
+
+
 
 export default App;
 
