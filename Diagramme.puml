@@ -29,8 +29,11 @@ class Table {
     int Nb_couverts
 }
 class Service{
+    Date Date
+    string Heure
     List Table
     id Employe
+    int Nb_Employes
 }
 
 Restaurant "1" <|----|> "*" Employe
@@ -39,4 +42,5 @@ Employe "*" <|----|> "*" Table
 Reservation "1" <|----|> "1" Table
 Service "1" <|----|> "*" Table
 Service "1" <|----|> "1" Employe
+Service "*" <|----|> "1" Restaurant
 @enduml

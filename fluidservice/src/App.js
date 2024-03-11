@@ -8,15 +8,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div><ReservationLink/></div>
+        <ReservationLink/>
       </header>
     </div>
   );
 }
 
+function ReservationLink() {
+  const link = "/Reservation/" ;
+  return <Link to={link} className="link">Appuyer ici pour commencer votre expérience</Link>;
+}
+
 export default App;
 
-export function ReservationLink() {
-  const link = "/Reservation/" ;
-  return <Link to={link}>Start your experience</Link>;
-}
+

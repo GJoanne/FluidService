@@ -1,13 +1,14 @@
 
+
 .Reservation{
     background-color: #303742;
-    height: 98%;
-    width: 100%;
+    padding-bottom: 8.1%;
 }
 
 .Reservation-body{
     background-color: #303742;
-    color : #EDE3DA;
+    color : #EDE3DA; 
+    
 }
 
 .Table-Header{
@@ -37,7 +38,10 @@ hr.Annule{
 }
 
 .Date-jour{
-    background-color:#84714F;
+    color:#303742;
+    font-weight: 900;
+    text-decoration: underline;
+    
 }
 
 h6{
@@ -59,6 +63,7 @@ table{
     color: #303742;
     border-radius: 10px;
     box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+    
 }
 
 th{
@@ -81,5 +86,10 @@ td{
     color:  #EDE3DA;
     border-radius: 10px;
     box-shadow: 6px 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link-custom{
+     color:  #EDE3DA;
+     text-decoration: none;
 }
 

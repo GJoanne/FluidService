@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import logo from './FluidService.png';
+import React from 'react';
 
 function Reservation() {
   return (
@@ -13,10 +14,10 @@ function Reservation() {
         <header>
       <Navbarfonc/>
       </header>
-      <body className="Reservation-body">
+      <div className="Reservation-body">
         <Title text="Réservations" />
         <Calendrier/>
-      </body>
+      </div>
     </div>
   );
 }
@@ -31,8 +32,8 @@ function Navbarfonc(){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-           <Nav.Link><Link to="/"> Accueil </Link> </Nav.Link>   
-            <Nav.Link href="#link">Link</Nav.Link>
+           <Nav.Link><Link to="/" className="nav-link-custom"> Accueil </Link> </Nav.Link>   
+            <Nav.Link href="#link" >Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -58,7 +59,6 @@ const Title = ({ text }) => (
 );
 
 function Calendrier (){
-     const currentDate = new Date();
      const mois = [
     "Janvier",
     "Février",
@@ -73,84 +73,101 @@ function Calendrier (){
     "Novembre",
     "Décembre"
   ];
-  const moisActuel = mois[currentDate.getMonth()];
+  const jours = [
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi",
+    "Dimanche",
+  ];
+  const currentDate = new Date();
+  const jourActuel = currentDate.getUTCDate();
+  let moisActuel = mois[currentDate.getMonth()];
+  const [moisCourant, setmoisCourant] = React.useState(currentDate.getMonth());
+  const [AnneeCourant, setAnneeCourant] = React.useState(currentDate.getFullYear());
+
+
+  const AllerAuMoisSuivant = () => {
+    setmoisCourant((prevMonth) => (prevMonth + 1) % 12);
+    if (moisCourant === 11) {
+      setAnneeCourant((prevYear) => prevYear + 1);
+    }
+  };
+
+  const AllerAuMoisPrecedent= () => {
+    setmoisCourant((prevMonth) => (prevMonth - 1 + 12) % 12);
+    if (moisCourant === 0) {
+      setAnneeCourant((prevYear) => prevYear - 1);
+    }
+  };
+
+  const AllerAuMoiscourant= () => {
+    setmoisCourant(currentDate.getMonth());
+    setAnneeCourant(currentDate.getFullYear());
+  };
+
+  moisActuel=mois[moisCourant];
+  let nbJoursMoisActuel = new Date(AnneeCourant, moisCourant, 0).getDate();
+  let nbJoursMoisprecedent = new Date(AnneeCourant, moisCourant-1 , 0).getDate();
+  let premierJourMoisActuel = new Date(AnneeCourant, moisCourant , 0).getDay();
+
+
+  //Remplissage du mois
+  const tableauMois=[];
+  let j=0;
+  let ligne=[];
+  for(let i=premierJourMoisActuel; i>1;i--){
+    ligne.push(<td>{nbJoursMoisprecedent-i+2}</td>);
+    j++;
+  }
+  for(let i=1; i<=nbJoursMoisActuel;i++){
+    if(j%7==0){
+      tableauMois.push(<tr>{ligne}</tr>)
+      ligne=[];
+    }
+    if(currentDate.getFullYear()==AnneeCourant && currentDate.getMonth()==moisCourant &&  jourActuel==i){
+       ligne.push(<td className='Date-jour'>{i}</td>);
+    }
+    else {
+      ligne.push(<td>{i}</td>);
+    }
+     
+    j++;
+  }
+  let i=1;
+  while(j<=35){
+    if(j%7==0){
+      tableauMois.push(<tr>{ligne}</tr>)
+      ligne=[];
+    }
+     ligne.push(<td>{i}</td>);
+     i++;
+    j++;
+  }
+
+
+
 return (<div>
     <div className='Table-Header'>
             <h2>{moisActuel}</h2>
             <div><input type='checkbox' id='Arrive'/><h6 className='Arrive'>Arrivé </h6><input type='checkbox' id='Annule'/><h6 className='Annule'>Annulé</h6> <input type='checkbox' id='Prevu'/>Prévue</div>
-<div>Aujourd'hui precedent suivant</div>
+<div><button onClick={AllerAuMoiscourant}>Aujourd'hui</button> <button onClick={AllerAuMoisPrecedent}>precedent</button> <button onClick={AllerAuMoisSuivant}>suivant</button></div>
         </div>
         <div>
             <table>
 <thead>
     <tr>
-        <th>Lundi</th>
-        <th>Mardi</th>
-        <th>Mercredi</th>
-            <th>Jeudi</th>
-        <th>Vendredi</th>
-        <th>Samedi</th>
-        <th>Dimanche</th>
+       {jours.map(jour=>(
+       <th>{jour}</th>))}
     </tr>   
 </thead>
 <tbody>
-    <tr>
-        <td>29</td>
-        <td>30</td>
-        <td>31</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td>10</td>
-          <td>11</td>
-    </tr>
-    <tr>
-        
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
-        <td>17
-            <hr className='Arrive'></hr>
-        </td>
-        <td>18</td>
-    </tr>
-    <tr>
-        
-        <td>19</td>
-        <td className='Date-jour'>20</td>
-        <td>21</td>
-        <td>22</td>
-        <td ><hr className='Annule'></hr>23</td>
-        <td>24</td>
-        <td>25</td>
-    </tr>
-    <tr>
-        
-        <td>26</td>
-        <td>27</td>
-        <td>28</td>
-        <td>29</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-    </tr>
+   {tableauMois}
 </tbody>
 
         </table></div></div>);
-}
-
-function Mois(){
-
 }
 
 export default Reservation;
