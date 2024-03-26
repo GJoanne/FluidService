@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-image: url("FluidService_background.gif");
+  background-image: url("../Images/FluidService_background.gif");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;

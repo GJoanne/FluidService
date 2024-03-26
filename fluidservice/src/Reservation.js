@@ -1,11 +1,11 @@
-import './Reservation.css';
+import './CSS/Reservation.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
-import logo from './FluidService.png';
+import logo from './Images/FluidService.png';
 import React from 'react';
 
 function Reservation() {
