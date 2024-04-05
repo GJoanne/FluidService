@@ -1,4 +1,5 @@
-# FluidService
+# FluidService ![FluidService](https://github.com/GJoanne/FluidService/assets/118722473/c026cf2e-a5a9-49c0-850a-23377b863dfa)
+
 Projet Individuelle informatique 2024
 Prérequis : 
   - Télécharger le projet
