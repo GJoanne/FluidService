@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 05 Avril 2024 à 06:28
+-- Généré le :  Ven 05 Avril 2024 à 06:41
 -- Version du serveur :  11.4.0-MariaDB
 -- Version de PHP :  5.6.18
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `fluid_service`
 --
+CREATE DATABASE IF NOT EXISTS `fluid_service` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `fluid_service`;
 
 -- --------------------------------------------------------
 
