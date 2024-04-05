@@ -1,6 +1,9 @@
 ![FluidService](https://github.com/GJoanne/FluidService/assets/118722473/c026cf2e-a5a9-49c0-850a-23377b863dfa)
 
 Projet Individuelle informatique 2024
+
+Le rapport se nomme : " Rendu Finale_GANGAPAL_Joanne "
+
 Prérequis : 
   - Télécharger le projet
   - Importer la base de donnée dans phpMyAdmin via uwamp ou xampp
