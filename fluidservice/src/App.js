@@ -2,7 +2,6 @@ import logo from './Images/FluidService.png';
 import './CSS/App.css';
 import { Link } from "react-router-dom";
 
-
 function App() {
   return (
     <div className="App">
@@ -15,12 +14,8 @@ function App() {
 }
 
 function ReservationLink() {
-  const link = "/Connexion/" ;
+  const link = "/Connexion/";
   return <Link to={link} className="link">Appuyer ici pour commencer votre expérience</Link>;
 }
 
-
-
 export default App;
-
-

@@ -6,9 +6,22 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import logo from './Images/FluidService.png';
-import React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 function Reservation() {
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/Reservation')
+      .then(response => {
+        setReservations(response.data);
+      })
+      .catch(error => {
+        console.error("Erreur lors de la récupération des réservations :", error);
+      });
+  }, []);
+
   return (
     <div className="Reservation">
         <header>
@@ -16,7 +29,7 @@ function Reservation() {
       </header>
       <div className="Reservation-body">
         <Title text="Réservations" />
-        <Calendrier/>
+        <Calendrier reservations={reservations} />
       </div>
     </div>
   );
@@ -29,20 +42,16 @@ function Navbarfonc(){
       <Container>
         <Navbar.Brand ><Link to="/"><img src={logo}
                     alt="Logo" width="75" height="75" /></Link></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle  />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
            <Nav.Link><Link to="/" className="nav-link-custom"> Accueil </Link> </Nav.Link>   
-            <Nav.Link href="#link" >Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+           <Nav.Link><Link to="/Reservation" className="nav-link-custom"> Réservation </Link> </Nav.Link>  
+            <Nav.Link ><Link to="/Salle" className="nav-link-custom"> Plan salle </Link></Nav.Link>
+            <NavDropdown  title="Service" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/Occupation">Occupation</NavDropdown.Item>
+              <NavDropdown.Item href="/ServiceSuggere">
+                Service suggéré
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -58,7 +67,7 @@ const Title = ({ text }) => (
  </p>
 );
 
-function Calendrier (){
+function Calendrier ({ reservations }){
      const mois = [
     "Janvier",
     "Février",
@@ -113,8 +122,6 @@ function Calendrier (){
   let nbJoursMoisprecedent = new Date(AnneeCourant, moisCourant-1 , 0).getDate();
   let premierJourMoisActuel = new Date(AnneeCourant, moisCourant , 0).getDay();
 
-
-  //Remplissage du mois
   const tableauMois=[];
   let j=0;
   let ligne=[];
@@ -127,13 +134,104 @@ function Calendrier (){
       tableauMois.push(<tr>{ligne}</tr>)
       ligne=[];
     }
-    if(currentDate.getFullYear()===AnneeCourant && currentDate.getMonth()===moisCourant &&  jourActuel===i){
-       ligne.push(<td className='Date-jour'>{i}</td>);
-    }
-    else {
-      ligne.push(<td>{i}</td>);
-    }
-     
+    if(jourActuel===i && currentDate.getFullYear()===AnneeCourant && currentDate.getMonth()===moisCourant){
+
+       const reservationPrevu = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Prevu'; 
+       });
+       const reservationAnnulee = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Annulee'; 
+       });
+       const reservationArrivee = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Arrivee'; 
+       });
+       if (reservationPrevu) {
+         ligne.push(
+           <td className='Date-jour'>
+             {i}<Link to="/DetailResa" className="nav-link-custom">
+             <hr className='Prevu'></hr></Link>
+           </td>
+         );
+       } 
+        else if (reservationAnnulee) {
+         ligne.push(
+           <td className='Date-jour'>
+             {i}
+             <hr className='Annule'></hr>
+           </td>
+         );
+       }
+       else if (reservationArrivee) {
+         ligne.push(
+           <td className='Date-jour'>
+             {i}
+             <hr className='Arrive'></hr>
+           </td>
+         );
+       }
+       else {
+         ligne.push(<td className='Date-jour'>{i}</td>);
+       }
+    } const reservationPrevu = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Prevu'; 
+       });
+       const reservationAnnulee = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Annulee'; 
+       });
+       const reservationArrivee = reservations.find(reservation => {
+         const reservationDate = new Date(reservation.Date);
+         return reservationDate.getDate() === i &&
+                reservationDate.getMonth() === moisCourant &&
+                reservationDate.getFullYear() === AnneeCourant &&
+                reservation.Etat_resa === 'Arrivee'; 
+       });
+       if (reservationPrevu) {
+         ligne.push(
+           <td>
+             {i}
+             <hr className='Prevu'></hr>
+           </td>
+         );
+       } 
+        else if (reservationAnnulee) {
+         ligne.push(
+           <td >
+             {i}
+             <hr className='Annule'></hr>
+           </td>
+         );
+       }
+       else if (reservationArrivee) {
+         ligne.push(
+           <td >
+             {i}
+             <hr className='Arrive'></hr>
+           </td>
+         );
+       }
+       else {
+        ligne.push(<td>{i}</td>)
+       }
     j++;
   }
   let i=1;
@@ -142,32 +240,42 @@ function Calendrier (){
       tableauMois.push(<tr>{ligne}</tr>)
       ligne=[];
     }
-     ligne.push(<td>{i}</td>);
-     i++;
+    ligne.push(<td>{i}</td>);
+    i++;
     j++;
   }
 
-
-
-return (<div>
-    <div className='Table-Header'>
-            <h2>{moisActuel}</h2>
-            <div><input type='checkbox' id='Arrive'/><h6 className='Arrive'>Arrivé </h6><input type='checkbox' id='Annule'/><h6 className='Annule'>Annulé</h6> <input type='checkbox' id='Prevu'/>Prévue</div>
-<div><button onClick={AllerAuMoiscourant}>Aujourd'hui</button> <button onClick={AllerAuMoisPrecedent}>precedent</button> <button onClick={AllerAuMoisSuivant}>suivant</button></div>
+  return (
+    <div>
+      <div className='Table-Header'>
+        <h2>{moisActuel}</h2>
+        <div class="checkbox_reservation">
+          <input type='checkbox' id='Arrive'/><h6 className='Arrive'>Arrivé </h6>
+          <input type='checkbox' id='Annule'/><h6 className='Annule'>Annulé</h6>
+          <input type='checkbox' id='Prevu'/><h6 className='Prevu'>Prévue</h6>
         </div>
         <div>
-            <table>
-<thead>
-    <tr>
-       {jours.map(jour=>(
-       <th>{jour}</th>))}
-    </tr>   
-</thead>
-<tbody>
-   {tableauMois}
-</tbody>
-
-        </table></div></div>);
+          <button onClick={AllerAuMoiscourant}>Aujourd'hui</button>
+          <button onClick={AllerAuMoisPrecedent}>Précédent</button>
+          <button onClick={AllerAuMoisSuivant}>Suivant</button>
+        </div>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              {jours.map(jour=>(
+              <th>{jour}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {tableauMois}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 export default Reservation;

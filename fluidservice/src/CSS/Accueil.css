@@ -15,6 +15,12 @@
     position: absolute;
     top: 0;
     margin-bottom: 5%;
+display: ruby;
+color: #EDE3DA;
+}
+
+h2{
+ color: #EDE3DA;
 }
 
 .contenant{
@@ -85,7 +91,7 @@ form{
     text-align: center;
 }
 
-input{
+.input_accu{
     width: 100%;
     border: none;
     border-bottom: 1px solid rgb(255 255 255 /65%);

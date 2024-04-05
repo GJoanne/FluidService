@@ -1,32 +1,36 @@
 @startuml Mediatheque
 class  Restaurant {
-    int Id
-    string Nom
-    int Siret
-    string Adresse
-    string Mail 
-    int NbEmployes
-    string Site_web 
+    int Restaurant_ID
+    string nom
+    int siret
+    string adresse
+    string mail 
+    int nbEmployes
+    string site_web 
 }
 class Employe{
-    int Id
-    int Rôle 
-    string Nom
-    string Prenom 
-    string Email 
-    string Adresse 
-    int Telephone
+    int Employe_ID
+    string nom
+    string prenom 
+    string email 
+    string adresse 
+    int telephone
+    string motDePasse
 }
 class Reservation{
+    int Reservation_ID
     Date date_resa
-    int Heure 
+    string heureDebut
+    string heureFin
     string Nom 
     int Nb_couverts
+    int numTable
 }
 class Table {
     int Id 
-    Etat Etat 
+    string Etat 
     int Nb_couverts
+
 }
 class Service{
     Date Date
