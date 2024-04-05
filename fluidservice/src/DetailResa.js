@@ -64,7 +64,7 @@ function Navbarfonc(){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
            <Nav.Link><Link to="/" className="nav-link-custom"> Accueil </Link> </Nav.Link>   
-           <Nav.Link><Link to="/Reservation2" className="nav-link-custom"> Réservation </Link> </Nav.Link>  
+           <Nav.Link><Link to="/Reservation" className="nav-link-custom"> Réservation </Link> </Nav.Link>  
             <Nav.Link ><Link to="/Salle" className="nav-link-custom"> Plan salle </Link></Nav.Link>
             <NavDropdown title="Service" id="basic-nav-dropdown">
               <NavDropdown.Item href="/Occupation">Occupation</NavDropdown.Item>
